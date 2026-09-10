@@ -1,0 +1,12 @@
+[project]
+name = "cassctl"
+version = "0.1.0"
+requires-pyton = ">=3.10"
+dependencies = ["Cassandra-driver>=3.29", "typer>=0.12", "rich>=13.0"]
+
+[project.scripts]
+cassctl = "cassctl.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
