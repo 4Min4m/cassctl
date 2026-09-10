@@ -3,9 +3,9 @@ name: cassctl-lab
 x-cassandra-common: &cassandra-common
   image: cassandra:4.1
   environment: &cassandra-env
-    CASSAMDRA_CLUSTER_NAME: cassctl-lab
-    CASSANRDA_SEEDS: cass1
-    CASSANDRA_ENDPOINT_SNITCH: GossipingPrperlyFileSnitch
+    CASSANDRA_CLUSTER_NAME: cassctl-lab
+    CASSANDRA_SEEDS: cass1
+    CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
     CASSANDRA_DC: dc1
     CASSANDRA_RACK: rack1
     MAX_HEAP_SIZE: 512M
@@ -22,27 +22,29 @@ services:
     <<: *cassandra-common
     container_name: cass1
     ports:
-      -"9042:9042"
+      - "9042:9042"
     volumes:
-      -cass1-data:/var/lib/cassandra
+      - cass1-data:/var/lib/cassandra
+
   cass2:
     <<: *cassandra-common
     container_name: cass2
     depends_on:
-      - cass1:
-          condition: service_healthy
+      cass1:
+        condition: service_healthy
     volumes:
-      -cass2-data:/var/lib/cassandra
+      - cass2-data:/var/lib/cassandra
+
   cass3:
     <<: *cassandra-common
     container_name: cass3
     depends_on:
-      - cass2:
-          condition: service_healthy
+      cass2:
+        condition: service_healthy
     volumes:
-      -cass3-data:/var/lib/cassandra
+      - cass3-data:/var/lib/cassandra
 
 volumes:
   cass1-data:
   cass2-data:
-  cass3-data: 
+  cass3-data:
