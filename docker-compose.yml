@@ -12,7 +12,7 @@ x-cassandra-common: &cassandra-common
     HEAP_NEWSIZE: 128M
   healthcheck:
     test: ["CMD-SHELL", "nodetool status | grep -E '^UN' || exit 1"]
-    intervals: 20s
+    interval: 20s
     timeout: 10s
     retries: 15
     start_period: 90s
