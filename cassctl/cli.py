@@ -1,6 +1,7 @@
 import typer
 
 from cassctl.commands import payment as payment_cmd
+from cassctl.commands import skew as skew_cmd
 from cassctl.commands.health import health
 
 app = typer.Typer(
@@ -19,6 +20,9 @@ def health_cmd() -> None:
     health()
 
 app.command("payment")(payment_cmd.payment)
+
+app.command("skew")(skew_cmd.skew)
+
 
 if __name__ == "__main__":
     app()
