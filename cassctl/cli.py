@@ -1,4 +1,6 @@
 import typer
+
+from cassctl.commands import payment as payment_cmd
 from cassctl.commands.health import health
 
 app = typer.Typer(
@@ -15,6 +17,8 @@ def main() -> None:
 def health_cmd() -> None:
     """Show Cassandra cluster health."""
     health()
+
+app.command("payment")(payment_cmd.payment)
 
 if __name__ == "__main__":
     app()
