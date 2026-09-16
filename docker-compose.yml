@@ -9,8 +9,8 @@ x-cassandra-common: &cassandra-common
     CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
     CASSANDRA_DC: dc1
     CASSANDRA_RACK: rack1
-    MAX_HEAP_SIZE: 256M
-    HEAP_NEWSIZE: 64M
+    MAX_HEAP_SIZE: 384M
+    HEAP_NEWSIZE: 96M
   healthcheck:
     test: ["CMD-SHELL", "cqlsh -e 'SELECT release_version FROM system.local' >/dev/null 2>&1 || exit 1"]
     interval: 20s
@@ -40,7 +40,7 @@ services:
     <<: *cassandra-common
     container_name: cass3
     depends_on:
-      cass1:
+      cass2:
         condition: service_healthy
     volumes:
       - cass3-data:/var/lib/cassandra
