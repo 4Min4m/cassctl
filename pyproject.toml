@@ -1,8 +1,8 @@
 [project]
 name = "cassctl"
 version = "0.1.0"
-requires-pyton = ">=3.10"
-dependencies = ["Cassandra-driver>=3.29", "typer>=0.12", "rich>=13.0"]
+requires-python = ">=3.10"
+dependencies = ["cassandra-driver>=3.29", "typer>=0.12", "rich>=13.0"]
 
 [project.scripts]
 cassctl = "cassctl.cli:app"
